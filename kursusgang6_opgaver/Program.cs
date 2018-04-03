@@ -33,11 +33,11 @@ namespace kursusgang6_opgaver
             Console.WriteLine(Ref.ToString());
 
             // Console.WriteLine(Player4.Age(Player4.DateOfBirth)); 
-            var Match1 = new Match(Player2, Player1,Ref);
-            var Match2 = new Match(Player3, Player4,Ref);
-            var Match3 = new Match(Player1, Player3,Ref);
+            var Match1 = new Match(Player2, Player1, Ref);
+            var Match2 = new Match(Player3, Player4, Ref);
+            var Match3 = new Match(Player1, Player3, Ref);
 
-            Console.WriteLine(Match1.ToString());
+            Console.WriteLine(Match2.ToString());
             // var tournament = new Tournament(2017, "2017-06-22", "2017-06-27", 8);
             // tournament.SimulateTournament(8);
             Console.ReadLine();
