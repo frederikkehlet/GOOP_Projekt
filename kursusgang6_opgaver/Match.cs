@@ -10,9 +10,12 @@ namespace kursusgang6_opgaver
     {
         private int sets;
         private string matchType;
+
         public TennisPlayer Player1 { get; }
         public TennisPlayer Player2 { get; }
         public Referee Ref { get; }
+        public int Player1Score { get; set; }
+        public int Player2Score { get; set; }
 
         public string Single
         {
@@ -34,7 +37,8 @@ namespace kursusgang6_opgaver
             set
             {
                 if (Single == "Men's Single") sets = 5;
-                else sets = 2;
+                else if (Single == "Women's Single") sets = 3;
+                else Single = null;
             }
         }
 
@@ -45,6 +49,8 @@ namespace kursusgang6_opgaver
             Single = matchType;
             Sets = sets;
             this.Ref = Ref;
+            Player1Score = 0;
+            Player2Score = 0;
         }
 
         public override string ToString()
@@ -58,6 +64,36 @@ namespace kursusgang6_opgaver
                 return String.Format("Match: {0}\nSets: {1}\n{2} vs {3}\nReferee: {4}",
                     Single, Sets, player1Name, player2Name, (Ref.FirstName + " " + Ref.LastName));
             }
+        }
+
+        // functionality for getting winner of game
+        public string GetWinner(TennisPlayer player1, TennisPlayer player2, int player1Score, int player2Score)
+        {
+            if (player1Score > player2Score) return player1.FirstName + " " + player1.LastName;
+            else return player2.FirstName + " " + player2.LastName;
+        }
+
+        // formal parameter is the name of the match object
+        /*public string SimulateMatch(string matchName)
+        {
+
+        }*/
+
+        public int[] SimulateSet()
+        {
+
+            Random rnd = new Random();
+            int[] point = new int[2];
+
+            while ((point[0] < 6) && (point[1] < 6))
+            {
+                int serve = rnd.Next(1, 3);
+
+                if (serve == 1) point[0]++;
+                else point[1]++;
+            }
+
+            return point;
         }
     }
 }

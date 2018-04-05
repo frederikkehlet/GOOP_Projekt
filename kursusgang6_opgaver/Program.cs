@@ -29,15 +29,15 @@ namespace kursusgang6_opgaver
 
             Referee Ref = new Referee("Ricco", "Jacobsen", "1957-01-01", sex.male, "1994-03-11","2017-10-01");
 
-            Console.WriteLine(Player1.ToString());
-            Console.WriteLine(Ref.ToString());
-
             // Console.WriteLine(Player4.Age(Player4.DateOfBirth)); 
             var Match1 = new Match(Player2, Player1, Ref);
             var Match2 = new Match(Player3, Player4, Ref);
             var Match3 = new Match(Player1, Player3, Ref);
 
-            Console.WriteLine(Match2.ToString());
+            foreach (var item in Match1.SimulateSet())
+            {
+                Console.WriteLine(item.ToString());
+            }
             // var tournament = new Tournament(2017, "2017-06-22", "2017-06-27", 8);
             // tournament.SimulateTournament(8);
             Console.ReadLine();
