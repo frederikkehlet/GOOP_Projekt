@@ -8,6 +8,7 @@ namespace kursusgang6_opgaver
 {
     class Match
     {
+        private Random rnd = new Random(DateTime.Now.Millisecond);
         private int sets;
         private string matchType;
 
@@ -58,31 +59,82 @@ namespace kursusgang6_opgaver
             if (Single == null) return null;
             else
             {
-                string player1Name = String.Format("{0} {1} {2}", Player1.FirstName, Player1.MiddleName, Player1.LastName);
-                string player2Name = String.Format("{0} {1} {2}", Player2.FirstName, Player2.MiddleName, Player2.LastName);
+                string player1Name = String.Format("{0} {1} {2}", Player1.FirstName,
+                    Player1.MiddleName, Player1.LastName);
+                string player2Name = String.Format("{0} {1} {2}", Player2.FirstName,
+                    Player2.MiddleName, Player2.LastName);
 
                 return String.Format("Match: {0}\nSets: {1}\n{2} vs {3}\nReferee: {4}",
                     Single, Sets, player1Name, player2Name, (Ref.FirstName + " " + Ref.LastName));
             }
         }
 
-        // functionality for getting winner of game
-        public string GetWinner(TennisPlayer player1, TennisPlayer player2, int player1Score, int player2Score)
+        // Simulates a match based on gender, displays match result and returns a winner
+        public TennisPlayer SimulateMatch()
         {
-            if (player1Score > player2Score) return player1.FirstName + " " + player1.LastName;
-            else return player2.FirstName + " " + player2.LastName;
+            Console.WriteLine(Player1.FirstName + " " + Player1.LastName +
+                " vs " + Player2.FirstName + " " + Player2.LastName);
+
+            int player1Wins = 0, player2Wins = 0;
+            int[,] menMatch = new int[5, 2];
+            int[,] womenMatch = new int[3, 2];
+            int setcounter = 0;
+
+            if (Sets == 5)
+            {
+                while (player1Wins < 3 && player2Wins < 3)
+                {
+                    int[] set = SimulateSet();
+
+                    if (set[0] == 6) player1Wins++;
+                    else player2Wins++;
+
+                    menMatch[setcounter, 0] = set[0];
+                    menMatch[setcounter, 1] = set[1];
+                    setcounter++;
+                }
+                PrintMatchResults(menMatch);
+            }
+            else if (Sets == 3)
+            {
+                while (player1Wins < 2 && player2Wins < 2)
+                {
+                    int[] set = SimulateSet();
+
+                    if (set[0] == 6) player1Wins++;
+                    else player2Wins++;
+
+                    womenMatch[setcounter, 0] = set[0];
+                    womenMatch[setcounter, 1] = set[1];
+                    setcounter++;
+
+                }
+                PrintMatchResults(womenMatch);
+            }
+            return GetWinner(player1Wins, player2Wins);
         }
 
-        // formal parameter is the name of the match object
-        /*public string SimulateMatch(string matchName)
+        // method for determining winner
+        private TennisPlayer GetWinner(int player1Wins, int player2Wins)
         {
+            if (player1Wins > player2Wins) return Player1;
+            else return Player2;
+        }
 
-        }*/
-
-        public int[] SimulateSet()
+        // method for printing match results
+        private void PrintMatchResults(int[,] multiArray)
         {
+            for (int i = 0; i < multiArray.GetLength(0); i++)
+            {
+                if (multiArray[i, 0] == 00) break;
+                else Console.Write(multiArray[i, 0] + " - " + multiArray[i, 1]);
+                Console.WriteLine();
+            }
+        }
 
-            Random rnd = new Random();
+        // method for simulating the result of one set
+        private int[] SimulateSet()
+        {
             int[] point = new int[2];
 
             while ((point[0] < 6) && (point[1] < 6))
@@ -92,7 +144,6 @@ namespace kursusgang6_opgaver
                 if (serve == 1) point[0]++;
                 else point[1]++;
             }
-
             return point;
         }
     }
