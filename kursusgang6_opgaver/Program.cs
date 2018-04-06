@@ -34,10 +34,8 @@ namespace kursusgang6_opgaver
             var Match2 = new Match(Player3, Player4, Ref);
             var Match3 = new Match(Player1, Player3, Ref);
 
-            foreach (var item in Match1.SimulateSet())
-            {
-                Console.WriteLine(item.ToString());
-            }
+            
+            
             // var tournament = new Tournament(2017, "2017-06-22", "2017-06-27", 8);
             // tournament.SimulateTournament(8);
             Console.ReadLine();

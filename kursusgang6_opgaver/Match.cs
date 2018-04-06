@@ -73,27 +73,66 @@ namespace kursusgang6_opgaver
             else return player2.FirstName + " " + player2.LastName;
         }
 
-        // formal parameter is the name of the match object
-        /*public string SimulateMatch(string matchName)
+        public void SimulateMatch()
         {
+            try
+            {
+                Random rnd = new Random();
+                int player1Wins = 0;
+                int player2Wins = 0;
+                int[] set = new int[2];
+                int[,] sets = new int[5, 2];
+                int setcounter = 0;
+                int setresult1 = 0, setresult2 = 0;
 
-        }*/
+                set = SimulateSet();
+                while ((player1Wins != 5 && player2Wins != 5))
+                {
+                    // spiller 1 vinder settet
+                    if (set[0] == 6)
+                    {
+                        setresult1 = 6;
+                        setresult2 = rnd.Next(1, 6);
+                        player1Wins++;
+                    }
+                    else
+                    {
+                        setresult2 = 6;
+                        setresult1 = rnd.Next(1, 6);
+                        player2Wins++;
+                    }
+                    sets[setcounter, 0] = setresult1;
+                    sets[setcounter, 1] = setresult2;
+                    setcounter++;
 
-        public int[] SimulateSet()
+                    set = SimulateSet();
+                }
+            }
+            catch (IndexOutOfRangeException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }   
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        private int[] SimulateSet()
         {
 
             Random rnd = new Random();
-            int[] point = new int[2];
+            int[] points = new int[2];
 
-            while ((point[0] < 6) && (point[1] < 6))
+            while ((points[0] < 6) && (points[1] < 6)) // while løkken kører indtil én af spillerne har fået 6 point
             {
                 int serve = rnd.Next(1, 3);
 
-                if (serve == 1) point[0]++;
-                else point[1]++;
+                if (serve == 1) points[0]++; // player 1 vinder serven
+                else points[1]++; // player 2 vinder serven
             }
 
-            return point;
+            return points;
         }
     }
 }
