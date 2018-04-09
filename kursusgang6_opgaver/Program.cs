@@ -14,22 +14,26 @@ namespace kursusgang6_opgaver
             try
             {
                 var Player1 = new TennisPlayer("Frederik", "Kehlet", "1994-09-28", "Dansk", sex.male);
-                var Player2 = new TennisPlayer("Frederik", "Kvist", "Aarup", "1995-06-29", "Dansk", sex.male);
-                var Player3 = new TennisPlayer("Pia", "Hansen", "1996-07-10", "Norsk", sex.female);
-                var Player4 = new TennisPlayer("Katrine", "Øgaard", "Jensen", "1992-04-15", "Dansk", sex.female);
+                var Player2 = new TennisPlayer("Karsten", "Kvist", "Aarup", "1995-06-29", "Dansk", sex.male);
+                var Player3 = new TennisPlayer("Kirsten", "Hansen", "1996-07-10", "Norsk", sex.female);
+                var Player4 = new TennisPlayer("Pia", "Øgaard", "Jensen", "1992-04-15", "Dansk", sex.female);
+
+                TennisPlayer[] players = { Player1, Player2, Player3, Player4 };
 
                 Referee Ref = new Referee("Ricco", "Jacobsen", "1957-01-01", sex.male, "1994-03-11", "2017-10-01");
 
                 // Console.WriteLine(Player4.Age(Player4.DateOfBirth)); 
-                var Match1 = new Match(Player2, Player1, Ref);
-                var Match2 = new Match(Player3, Player4, Ref); 
-                var Match3 = new Match(Player1, Player3, Ref);
 
-                Console.WriteLine(Match1.SimulateMatch().ToString());
-
-                Tournament tournament = new Tournament(2017, "2017-06-22", "2017-06-27", 8);
-                Console.ReadLine();
+                Match match = new Match(Player1, Player3, Ref);
+                /*Tournament tournament = new Tournament(2017, "2017-06-22", "2017-06-27", 4, players);
+                tournament.SimulateTournament(players);*/
+                
             }
+            catch (GendersOfPlayersInMatchException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            
             catch (NullReferenceException e)
             {
                 Console.WriteLine(e.Message);
@@ -37,6 +41,10 @@ namespace kursusgang6_opgaver
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                Console.ReadLine();
             }
             //DateTime date = new DateTime(1994, 09, 28);
             //DateTime date1 = new DateTime(2016, 10, 24);

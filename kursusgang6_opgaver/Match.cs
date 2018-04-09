@@ -45,13 +45,20 @@ namespace kursusgang6_opgaver
 
         public Match(TennisPlayer player1, TennisPlayer player2, Referee Ref)
         {
-            Player1 = player1;
-            Player2 = player2;
-            Single = matchType;
-            Sets = sets;
-            this.Ref = Ref;
-            Player1Score = 0;
-            Player2Score = 0;
+            if (player1.Gender != player2.Gender)
+            {
+                throw new GendersOfPlayersInMatchException("Genders do not match");
+            }
+            else
+            {
+                Player1 = player1;
+                Player2 = player2;
+                Single = matchType;
+                Sets = sets;
+                this.Ref = Ref;
+                Player1Score = 0;
+                Player2Score = 0;
+            }         
         }
 
         public override string ToString()
