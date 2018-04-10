@@ -6,19 +6,21 @@ using System.Threading.Tasks;
 
 namespace kursusgang6_opgaver
 {
-    class Referee
+    public class Referee
     {
         public string FirstName { get; set; }
+        public string MiddleName { get; set; }
         public string LastName { get; set; }
         public DateTime DateOfBirth { get; set; }
         public sex Gender { get; set; }
         public DateTime LicenseAquired { get; set; }
         public DateTime LicenseRenewed { get; set; }
 
-        public Referee(string firstName, string lastName, string dateOfBirth, 
+        public Referee(string firstName, string middleName, string lastName, string dateOfBirth, 
             sex gender, string licenseAquired, string licenseRenewed)
         {
             FirstName = firstName;
+            MiddleName = middleName;
             LastName = lastName;
             DateOfBirth = DateTime.ParseExact(dateOfBirth, "yyyy-MM-dd", null);
             Gender = gender;
