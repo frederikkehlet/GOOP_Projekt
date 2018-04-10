@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace kursusgang6_opgaver
 {
-    class Match
+    class Match 
     {
         private Random rnd = new Random(DateTime.Now.Millisecond);
         private int sets;
@@ -70,10 +70,10 @@ namespace kursusgang6_opgaver
         }
 
         // Simulates a match based on gender, displays match result and returns a winner
-        public TennisPlayer SimulateMatch()
+        public TennisPlayer SimulateMatch(TennisPlayer player1, TennisPlayer player2)
         {
-            Console.WriteLine(Player1.FirstName + " " + Player1.LastName +
-                " vs " + Player2.FirstName + " " + Player2.LastName);
+            Console.WriteLine(player1.FirstName + " " + player1.LastName +
+                " vs " + player2.FirstName + " " + player2.LastName);
 
             int player1Wins = 0, player2Wins = 0;
             int[,] menMatch = new int[5, 2];

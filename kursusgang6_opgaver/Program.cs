@@ -15,19 +15,29 @@ namespace kursusgang6_opgaver
             {
                 var Player1 = new TennisPlayer("Frederik", "Kehlet", "1994-09-28", "Dansk", sex.male);
                 var Player2 = new TennisPlayer("Frederik", "Kvist", "Aarup", "1995-06-29", "Dansk", sex.male);
-                var Player3 = new TennisPlayer("Pia", "Hansen", "1996-07-10", "Norsk", sex.female);
-                var Player4 = new TennisPlayer("Katrine", "Øgaard", "Jensen", "1992-04-15", "Dansk", sex.female);
+                var Player3 = new TennisPlayer("Andreas", "Hansen", "1996-07-10", "Norsk", sex.male);
+                var Player4 = new TennisPlayer("Mike", "Pedersen", "1992-01-15", "Svensk", sex.male);
+                var Player5 = new TennisPlayer("Peter", "Kehlet", "1966-09-21", "Tysk", sex.male);
+                var Player6 = new TennisPlayer("Thomas", "Hansen", "1970-02-19", "Dansk", sex.male);
+                var Player7 = new TennisPlayer("Jakob", "Hundahl", "1988-07-14", "Norsk", sex.male);
+                var Player8 = new TennisPlayer("Patrick", "Øgaard", "Jensen", "1992-04-15", "Dansk", sex.male);
 
                 Referee Ref = new Referee("Ricco", "Jacobsen", "1957-01-01", sex.male, "1994-03-11", "2017-10-01");
 
+                TennisPlayer[] playersArray = { Player1, Player2, Player3,
+                    Player4, Player5, Player6, Player7, Player8 };
+
+                
                 // Console.WriteLine(Player4.Age(Player4.DateOfBirth)); 
                 var Match1 = new Match(Player2, Player1, Ref);
                 var Match2 = new Match(Player3, Player4, Ref); 
                 var Match3 = new Match(Player1, Player3, Ref);
 
-                Console.WriteLine(Match1.SimulateMatch().ToString());
+                var winner = Match1.SimulateMatch(Player2, Player1);
 
-                Tournament tournament = new Tournament(2017, "2017-06-22", "2017-06-27", 8);
+                Tournament tournament1 = new Tournament(2017, "2017-06-22", "2017-06-27", 8);
+                // tournament1.SimulateTournament(playersArray, playersArray.Length);
+                
                 Console.ReadLine();
             }
             catch (NullReferenceException e)
