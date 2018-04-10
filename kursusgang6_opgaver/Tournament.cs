@@ -14,7 +14,10 @@ namespace kursusgang6_opgaver
         public DateTime ToDate { get; set; }
         public int NumOfPlayers { get; set; }
         public int NumOfMatches { get; }
-        TennisPlayer[] PlayersInTournament { get; set; }
+        public List<TennisPlayer> PlayersInTournament { get; set; }
+        Gamemaster Gamemaster { get; }
+        Referee Ref { get; }
+        public int Matchcount { get; set; }
 
         private int InitialMatches(int numOfPlayers)
         {
@@ -26,33 +29,64 @@ namespace kursusgang6_opgaver
             return numOfPlayers / 2;
         }
 
-        public Tournament(int year, string fromDate, string toDate, int numOfPlayers, TennisPlayer[] playersInTournament)
+        public Tournament(string name, int year, string fromDate, string toDate, int numOfPlayers, List<TennisPlayer> playersInTournament, Gamemaster gamemaster)
         {
+            Name = name;
             Year = year;
             FromDate = DateTime.ParseExact(fromDate, "yyyy-MM-dd", null);
             ToDate = DateTime.ParseExact(toDate, "yyyy-MM-dd", null);
-            NumOfMatches = InitialMatches(numOfPlayers);
-            if (NumOfMatches == 0) throw new Exception("Number of players is uneven");
+            NumOfPlayers = numOfPlayers;
+            NumOfMatches = InitialMatches(NumOfPlayers);
+            if (NumOfMatches == 0) throw new PlayerCountUnevenException("Player count uneven");
             PlayersInTournament = playersInTournament;
+            Gamemaster = gamemaster;
         }
 
 
         public override string ToString()
         {
-            return String.Format("Name: {0}\nFrom: {1} to {2}\nNumber of players: {3}",
-                Name, FromDate.ToShortDateString(), ToDate.ToShortDateString(), NumOfMatches);
+            return String.Format("Name: {0}\nFrom: {1} to {2}\nNumber of players: {3}" +
+                "\nNumber of initial matches: {4}\n\nGamemaster: \n{5}",
+                Name, FromDate.ToShortDateString(), ToDate.ToShortDateString(), NumOfPlayers, NumOfMatches, Gamemaster);
         }
 
-        public void SimulateTournament(TennisPlayer[] players)
+        public void SimulateTournament(List<TennisPlayer> playersInTournament)
         {
-            // Convert every player object to string with their name
-            string[] playerString = new string[players.Length];
-            for (int i = 0; i < playerString.Length; i++)
+            if (playersInTournament.Count == 1)
             {
-                string name = players[i].FirstName + " " + players[i].LastName;
-                playerString[i] = name;
+                Console.WriteLine("The winner is " + playersInTournament[0]);
             }
-            
+            else
+            {
+                List<TennisPlayer> winners = new List<TennisPlayer>();
+                int i = 0;
+                while (winners.Count != playersInTournament.Count / 2)
+                {
+                    Match match = new Match(playersInTournament[i], playersInTournament[i + 1], Ref);
+                    var winner = match.SimulateMatch();
+                    if (winner == playersInTournament[i])
+                    {
+                        winners.Add(playersInTournament[i]);
+                    }
+                    else
+                    {
+                        winners.Add(playersInTournament[i + 1]);
+                    }
+                    i = i + 2;
+                    Matchcount++;
+                }
+                SimulateTournament(winners);
+            }
+        }
+
+        public void AddPlayerToTournament(TennisPlayer player)
+        {
+            PlayersInTournament.Add(player);
+        }
+
+        public void RemovePlayerFromTournament(TennisPlayer player)
+        {
+            PlayersInTournament.Remove(player);
         }
     }
 }

@@ -4,36 +4,70 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
+using System.Diagnostics;
 
 namespace kursusgang6_opgaver
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             try
             {
-                var Player1 = new TennisPlayer("Frederik", "Kehlet", "1994-09-28", "Dansk", sex.male);
-                var Player2 = new TennisPlayer("Karsten", "Kvist", "Aarup", "1995-06-29", "Dansk", sex.male);
-                var Player3 = new TennisPlayer("Kirsten", "Hansen", "1996-07-10", "Norsk", sex.female);
-                var Player4 = new TennisPlayer("Pia", "Øgaard", "Jensen", "1992-04-15", "Dansk", sex.female);
+                Console.Clear();
+                Console.WriteLine("Welcome to the Tournament Simulator! Please enter the name of the tournament: ");
+                string name = Console.ReadLine();
 
-                TennisPlayer[] players = { Player1, Player2, Player3, Player4 };
+                Console.WriteLine("\nPlease enter the year of the tournament: ");
+                int year = int.Parse(Console.ReadLine());
 
-                Referee Ref = new Referee("Ricco", "Jacobsen", "1957-01-01", sex.male, "1994-03-11", "2017-10-01");
+                Console.WriteLine("\nPlease enter the start date of the tournament (yyyy-MM-dd): ");
+                string fromDate = Console.ReadLine();
 
-                // Console.WriteLine(Player4.Age(Player4.DateOfBirth)); 
+                Console.WriteLine("\nPlease enter the end date of the tournament (yyyy-MM-dd): ");
+                string toDate = Console.ReadLine();
 
-                Match match = new Match(Player1, Player3, Ref);
-                /*Tournament tournament = new Tournament(2017, "2017-06-22", "2017-06-27", 4, players);
-                tournament.SimulateTournament(players);*/
-                
+                Console.WriteLine("\nPlease enter the number of players participating in the tournament");
+                int playerCount = int.Parse(Console.ReadLine());
+
+                Console.WriteLine("\nPlease enter the gender of players (f/m): ");
+                char gender = char.Parse(Console.ReadLine());
+
+                Gamemaster gamemaster = new Gamemaster("Kaj", "Kim", "Hansen", "1999-01-27", sex.male, "1999-01-01", "2009-01-01");
+
+                var MalePlayers = new ReadCSVFile(@"C:\Users\Frederik\source\repos\GOOP_Projekt2\kursusgang6_opgaver\Txt files\MalePlayer.txt");
+                var FemalePlayers = new ReadCSVFile(@"C:\Users\Frederik\source\repos\GOOP_Projekt2\kursusgang6_opgaver\Txt files\FemalePlayer.txt");
+                MalePlayers.LoadMalePlayers();
+                FemalePlayers.LoadFemalePlayers();
+
+                List<TennisPlayer> playersInTournament = new List<TennisPlayer>();
+
+                if (gender == 'm') playersInTournament = MalePlayers.GetListOfPlayers(playerCount);
+                else if (gender == 'f') playersInTournament = FemalePlayers.GetListOfPlayers(playerCount);
+                else Console.WriteLine("Gender format incorrect");
+
+                Tournament Wimbledon = new Tournament(name, year, toDate, fromDate, playersInTournament.Count, playersInTournament, gamemaster);
+
+                Console.Clear();
+                Console.WriteLine("Simulating...");
+                System.Threading.Thread.Sleep(3000);
+
+                Console.WriteLine(Wimbledon.ToString());
+                Wimbledon.SimulateTournament(playersInTournament);
+                Console.WriteLine(Wimbledon.Matchcount + " total matches played in tournament");
             }
             catch (GendersOfPlayersInMatchException e)
             {
                 Console.WriteLine(e.Message);
             }
-            
+            catch (PlayerCountUnevenException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine(e.Message);
+            }
             catch (NullReferenceException e)
             {
                 Console.WriteLine(e.Message);
@@ -44,7 +78,10 @@ namespace kursusgang6_opgaver
             }
             finally
             {
-                Console.ReadLine();
+                Console.WriteLine("Press enter to restart or type 'exit' to exit");
+                string input = Console.ReadLine();
+                if (input == "exit") Environment.Exit(-1);
+                else Main();
             }
             //DateTime date = new DateTime(1994, 09, 28);
             //DateTime date1 = new DateTime(2016, 10, 24);
@@ -56,8 +93,8 @@ namespace kursusgang6_opgaver
             var husband = new Person("Bent", wife);
             wife.Spouse = husband;
             Console.WriteLine(String.Format("{0}\n{1}",wife.ToString(),husband.ToString()));*/
-            
-           
+
+
         }
     }
 }

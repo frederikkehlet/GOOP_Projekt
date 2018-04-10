@@ -32,6 +32,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -42,11 +43,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Gamemaster.cs" />
     <Compile Include="GendersOfPlayersInMatchException.cs" />
     <Compile Include="Match.cs" />
     <Compile Include="Person.cs" />
+    <Compile Include="Custom exceptions\PlayerCountUnevenException.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReadCSVFile.cs" />
     <Compile Include="Referee.cs" />
     <Compile Include="TennisPlayer.cs" />
     <Compile Include="Tournament.cs" />

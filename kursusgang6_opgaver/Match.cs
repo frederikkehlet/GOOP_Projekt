@@ -124,8 +124,16 @@ namespace kursusgang6_opgaver
         // method for determining winner
         private TennisPlayer GetWinner(int player1Wins, int player2Wins)
         {
-            if (player1Wins > player2Wins) return Player1;
-            else return Player2;
+            if (player1Wins > player2Wins)
+            {
+                Console.WriteLine(Player1.FirstName + " " + Player1.LastName + " wins!\n");
+                return Player1;
+            }
+            else
+            {
+                Console.WriteLine(Player2.FirstName + " " + Player2.LastName + " wins!\n");
+                return Player2;
+            }
         }
 
         // method for printing match results
