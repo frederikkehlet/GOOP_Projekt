@@ -77,10 +77,10 @@ namespace kursusgang6_opgaver
         }
 
         // Simulates a match based on gender, displays match result and returns a winner
-        public TennisPlayer SimulateMatch(TennisPlayer player1, TennisPlayer player2)
+        public TennisPlayer SimulateMatch()
         {
-            Console.WriteLine(player1.FirstName + " " + player1.LastName +
-                " vs " + player2.FirstName + " " + player2.LastName);
+            Console.WriteLine(Player1.FirstName + " " + Player1.LastName +
+                " vs " + Player2.FirstName + " " + Player2.LastName);
 
             int player1Wins = 0, player2Wins = 0;
             int[,] menMatch = new int[5, 2];
