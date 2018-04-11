@@ -35,7 +35,7 @@ namespace kursusgang6_opgaver
             return specifiedListOfPlayers;
         }
         
-        public void LoadMalePlayers()
+        /*public void LoadMalePlayers()
         {
             TextFieldParser par = new TextFieldParser(FileName);
             par.TextFieldType = FieldType.Delimited;
@@ -53,9 +53,9 @@ namespace kursusgang6_opgaver
                 var player = new TennisPlayer(firstName, middleName, lastName, birthdate, nationality, sex.male);
                 players.Add(player);
             }
-        }
+        }*/
 
-        public void LoadFemalePlayers()
+        public void LoadPlayers(sex gender)
         {
             TextFieldParser par = new TextFieldParser(FileName);
             par.TextFieldType = FieldType.Delimited;
@@ -70,9 +70,19 @@ namespace kursusgang6_opgaver
                 string birthdate = fields[4];
                 string nationality = fields[5];
                 // create player object
-                var player = new TennisPlayer(firstName, middleName, lastName, birthdate, nationality, sex.female);
+                var player = new TennisPlayer(firstName, middleName, lastName, birthdate, nationality, gender);
                 players.Add(player);
             }
+        }
+
+        public void LoadMaleReferees()
+        {
+            // missing
+        }
+
+        public void LoadFemaleReferees()
+        {
+            // missing
         }
 
         public override string ToString()

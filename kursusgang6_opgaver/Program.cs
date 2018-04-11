@@ -37,8 +37,8 @@ namespace kursusgang6_opgaver
 
                 var MalePlayers = new ReadCSVFile(@"..\Txt files\MalePlayer.txt");
                 var FemalePlayers = new ReadCSVFile(@"..\Txt files\FemalePlayer.txt");
-                MalePlayers.LoadMalePlayers();
-                FemalePlayers.LoadFemalePlayers();
+                MalePlayers.LoadPlayers(sex.male);
+                FemalePlayers.LoadPlayers(sex.female);
 
                 List<TennisPlayer> playersInTournament = new List<TennisPlayer>();
 
