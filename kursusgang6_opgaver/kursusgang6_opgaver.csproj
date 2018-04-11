@@ -61,12 +61,5 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="Txt files\FemalePlayer.txt" />
-    <Content Include="Txt files\FermaleRefs.txt" />
-    <Content Include="Txt files\MalePlayer.txt" />
-    <Content Include="Txt files\MaleRefs.txt" />
-    <Content Include="Txt files\README.txt" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
