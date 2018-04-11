@@ -35,8 +35,8 @@ namespace kursusgang6_opgaver
 
                 Gamemaster gamemaster = new Gamemaster("Kaj", "Kim", "Hansen", "1999-01-27", sex.male, "1999-01-01", "2009-01-01");
 
-                var MalePlayers = new ReadCSVFile(@"C:\Users\Frederik\source\repos\GOOP_Projekt2\kursusgang6_opgaver\Txt files\MalePlayer.txt");
-                var FemalePlayers = new ReadCSVFile(@"C:\Users\Frederik\source\repos\GOOP_Projekt2\kursusgang6_opgaver\Txt files\FemalePlayer.txt");
+                var MalePlayers = new ReadCSVFile(@"~\Txt files\MalePlayer.txt");
+                var FemalePlayers = new ReadCSVFile(@"~\Txt files\FemalePlayer.txt");
                 MalePlayers.LoadMalePlayers();
                 FemalePlayers.LoadFemalePlayers();
 
