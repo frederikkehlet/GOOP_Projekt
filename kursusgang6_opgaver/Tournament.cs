@@ -51,19 +51,20 @@ namespace kursusgang6_opgaver
         }
 
         public void SimulateTournament(List<TennisPlayer> playersInTournament)
-        {
+        {            
             if (playersInTournament.Count == 1)
             {
-                Console.WriteLine("The winner is " + playersInTournament[0]);
+                Console.WriteLine("The winner is \n" + playersInTournament[0]);
             }
             else
             {
                 List<TennisPlayer> winners = new List<TennisPlayer>();
                 int i = 0;
                 while (winners.Count != playersInTournament.Count / 2)
-                {
+                { 
                     Match match = new Match(playersInTournament[i], playersInTournament[i + 1], Ref);
-                    var winner = match.SimulateMatch();
+                    TennisPlayer winner = match.SimulateMatch();
+                    System.Threading.Thread.Sleep(1000);
                     if (winner == playersInTournament[i])
                     {
                         winners.Add(playersInTournament[i]);
