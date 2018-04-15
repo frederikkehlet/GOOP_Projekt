@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace kursusgang6_opgaver
+namespace tennis_tournament
 {
-    class Match 
+    class Match
     {
         private Random rnd = new Random(DateTime.Now.Millisecond);
         private int sets;
-        private string matchType;
+        private int player1Wins = 0, player2Wins = 0;
 
         public TennisPlayer Player1 { get; }
         public TennisPlayer Player2 { get; }
@@ -18,62 +18,39 @@ namespace kursusgang6_opgaver
         public int Player1Score { get; set; }
         public int Player2Score { get; set; }
 
-        public string Single
-        {
-            get { return matchType; }
-            set
-            {
-                if (Player1.Gender == sex.male && Player2.Gender == sex.male)
-                    matchType = "Men's Single";
-                else if (Player1.Gender == sex.female && Player2.Gender == sex.female)
-                    matchType = "Women's Single";
-                else
-                    matchType = null;
-            }
-        }
-
         public int Sets
         {
             get { return sets; }
             set
             {
-                if (Single == "Men's Single") sets = 5;
-                else if (Single == "Women's Single") sets = 3;
-                else Single = null;
+                if (Player1.Gender == sex.male && Player2.Gender == sex.male)
+                    sets = 5;
+                else if (Player1.Gender == sex.female && Player2.Gender == sex.female)
+                    sets = 3;
+                else throw new GendersOfPlayersInMatchException("Genders do not match");
             }
         }
 
         public Match(TennisPlayer player1, TennisPlayer player2, Referee Ref)
         {
-            if (player1.Gender != player2.Gender)
-            {
-                throw new GendersOfPlayersInMatchException("Genders do not match");
-            }
-            else
-            {
-                Player1 = player1;
-                Player2 = player2;
-                Single = matchType;
-                Sets = sets;
-                this.Ref = Ref;
-                Player1Score = 0;
-                Player2Score = 0;
-            }         
+            Player1 = player1;
+            Player2 = player2;
+            Sets = sets;
+            this.Ref = Ref;
+            Player1Score = 0;
+            Player2Score = 0;
         }
 
         public override string ToString()
         {
-            if (Single == null) return null;
-            else
-            {
-                string player1Name = String.Format("{0} {1} {2}", Player1.FirstName,
-                    Player1.MiddleName, Player1.LastName);
-                string player2Name = String.Format("{0} {1} {2}", Player2.FirstName,
-                    Player2.MiddleName, Player2.LastName);
+            string player1Name = String.Format("{0} {1} {2}",
+            Player1.FirstName, Player1.MiddleName, Player1.LastName);
 
-                return String.Format("Match: {0}\nSets: {1}\n{2} vs {3}\nReferee: {4}",
-                    Single, Sets, player1Name, player2Name, (Ref.FirstName + " " + Ref.LastName));
-            }
+            string player2Name = String.Format("{0} {1} {2}",
+            Player2.FirstName, Player2.MiddleName, Player2.LastName);
+
+            return String.Format("Sets: {0}\n{1} vs {2}\nReferee: {3}",
+            Sets, player1Name, player2Name, (Ref.FirstName + " " + Ref.LastName));
         }
 
         // Simulates a match based on gender, displays match result and returns a winner
@@ -81,12 +58,12 @@ namespace kursusgang6_opgaver
         {
             Console.WriteLine(Player1.FirstName + " " + Player1.LastName +
                 " vs " + Player2.FirstName + " " + Player2.LastName);
-
-            int player1Wins = 0, player2Wins = 0;
+          
             int[,] menMatch = new int[5, 2];
             int[,] womenMatch = new int[3, 2];
             int setcounter = 0;
 
+            // Men's single
             if (Sets == 5)
             {
                 while (player1Wins < 3 && player2Wins < 3)
@@ -102,6 +79,7 @@ namespace kursusgang6_opgaver
                 }
                 PrintMatchResults(menMatch);
             }
+            // Women's single
             else if (Sets == 3)
             {
                 while (player1Wins < 2 && player2Wins < 2)
@@ -154,7 +132,7 @@ namespace kursusgang6_opgaver
 
             while ((point[0] < 6) && (point[1] < 6))
             {
-                int serve = rnd.Next(1, 3);
+                int serve = rnd.Next(1, 3); // used to determine who wins the point (1 and 2)
 
                 if (serve == 1) point[0]++;
                 else point[1]++;

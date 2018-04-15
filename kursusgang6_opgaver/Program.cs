@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Globalization;
 using System.Diagnostics;
 
-namespace kursusgang6_opgaver
+namespace tennis_tournament
 {
     class Program
     {
@@ -44,18 +44,20 @@ namespace kursusgang6_opgaver
 
                 if (gender == 'm') playersInTournament = MalePlayers.GetListOfPlayers(playerCount);
                 else if (gender == 'f') playersInTournament = FemalePlayers.GetListOfPlayers(playerCount);
-                else Console.WriteLine("Gender format incorrect");
+                else throw new GendersOfPlayersInMatchException("Gender format incorrect");
 
-                Tournament Wimbledon = new Tournament(name, year, toDate, fromDate, playersInTournament.Count, playersInTournament, gamemaster);
+                Tournament tournament = new Tournament(name, year, toDate, fromDate, playersInTournament.Count, playersInTournament, gamemaster);
 
                 Console.Clear();
                 Console.WriteLine("Simulating...");
                 System.Threading.Thread.Sleep(3000);
 
                 Console.Clear();
-                Console.WriteLine(Wimbledon.ToString());
-                Wimbledon.SimulateTournament(playersInTournament);
-                Console.WriteLine(Wimbledon.Matchcount + " total matches played in tournament");
+                Console.WriteLine(tournament.ToString()); 
+
+                tournament.SimulateTournament(playersInTournament); // simulates tournament
+
+                Console.WriteLine(tournament.Matchcount + " total matches played in tournament");
             }
             catch (GendersOfPlayersInMatchException e)
             {
@@ -84,18 +86,6 @@ namespace kursusgang6_opgaver
                 if (input == "exit") Environment.Exit(-1);
                 else Main();
             }
-            //DateTime date = new DateTime(1994, 09, 28);
-            //DateTime date1 = new DateTime(2016, 10, 24);
-            // Console.WriteLine(String.Format("{0} {1}",date.DayOfWeek,date1.DayOfWeek));
-            // DK 24-12-2001
-            // US 12/24/2001
-            // ISO 2001-12-24 
-            /* var wife = new Person("Anna", null);
-            var husband = new Person("Bent", wife);
-            wife.Spouse = husband;
-            Console.WriteLine(String.Format("{0}\n{1}",wife.ToString(),husband.ToString()));*/
-
-
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using Microsoft.VisualBasic.FileIO;
 
-namespace kursusgang6_opgaver
+namespace tennis_tournament
 {
     class ReadCSVFile
     {
@@ -55,12 +55,7 @@ namespace kursusgang6_opgaver
             }
         }
 
-        public void LoadMaleReferees()
-        {
-            // missing
-        }
-
-        public void LoadFemaleReferees()
+        public void LoadReferees(sex gender)
         {
             // missing
         }
