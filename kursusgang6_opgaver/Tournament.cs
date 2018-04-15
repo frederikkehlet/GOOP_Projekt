@@ -22,11 +22,8 @@ namespace kursusgang6_opgaver
         private int InitialMatches(int numOfPlayers)
         {
             // returns half of the number of players, i.e. if there are 64 initial players, 32 initial matches need to be played
-            if (numOfPlayers % 2 != 0)
-            {
-                return 0;
-            }
-            return numOfPlayers / 2;
+            if (numOfPlayers % 2 != 0) throw new PlayerCountUnevenException("Player count uneven");
+            else return numOfPlayers / 2;
         }
 
         public Tournament(string name, int year, string fromDate, string toDate, int numOfPlayers, List<TennisPlayer> playersInTournament, Gamemaster gamemaster)
@@ -37,7 +34,6 @@ namespace kursusgang6_opgaver
             ToDate = DateTime.ParseExact(toDate, "yyyy-MM-dd", null);
             NumOfPlayers = numOfPlayers;
             NumOfMatches = InitialMatches(NumOfPlayers);
-            if (NumOfMatches == 0) throw new PlayerCountUnevenException("Player count uneven");
             PlayersInTournament = playersInTournament;
             Gamemaster = gamemaster;
         }

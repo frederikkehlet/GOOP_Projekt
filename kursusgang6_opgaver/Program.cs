@@ -44,7 +44,7 @@ namespace kursusgang6_opgaver
 
                 if (gender == 'm') playersInTournament = MalePlayers.GetListOfPlayers(playerCount);
                 else if (gender == 'f') playersInTournament = FemalePlayers.GetListOfPlayers(playerCount);
-                else Console.WriteLine("Gender format incorrect");
+                else throw new GendersOfPlayersInMatchException("Gender format incorrect");
 
                 Tournament Wimbledon = new Tournament(name, year, toDate, fromDate, playersInTournament.Count, playersInTournament, gamemaster);
 
@@ -53,8 +53,10 @@ namespace kursusgang6_opgaver
                 System.Threading.Thread.Sleep(3000);
 
                 Console.Clear();
-                Console.WriteLine(Wimbledon.ToString());
-                Wimbledon.SimulateTournament(playersInTournament);
+                Console.WriteLine(Wimbledon.ToString()); 
+
+                Wimbledon.SimulateTournament(playersInTournament); // simulates tournament
+
                 Console.WriteLine(Wimbledon.Matchcount + " total matches played in tournament");
             }
             catch (GendersOfPlayersInMatchException e)
