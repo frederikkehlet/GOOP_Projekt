@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace kursusgang6_opgaver
+namespace tennis_tournament
 {
     class Match
     {

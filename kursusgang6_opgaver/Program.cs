@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Globalization;
 using System.Diagnostics;
 
-namespace kursusgang6_opgaver
+namespace tennis_tournament
 {
     class Program
     {
@@ -46,18 +46,18 @@ namespace kursusgang6_opgaver
                 else if (gender == 'f') playersInTournament = FemalePlayers.GetListOfPlayers(playerCount);
                 else throw new GendersOfPlayersInMatchException("Gender format incorrect");
 
-                Tournament Wimbledon = new Tournament(name, year, toDate, fromDate, playersInTournament.Count, playersInTournament, gamemaster);
+                Tournament tournament = new Tournament(name, year, toDate, fromDate, playersInTournament.Count, playersInTournament, gamemaster);
 
                 Console.Clear();
                 Console.WriteLine("Simulating...");
                 System.Threading.Thread.Sleep(3000);
 
                 Console.Clear();
-                Console.WriteLine(Wimbledon.ToString()); 
+                Console.WriteLine(tournament.ToString()); 
 
-                Wimbledon.SimulateTournament(playersInTournament); // simulates tournament
+                tournament.SimulateTournament(playersInTournament); // simulates tournament
 
-                Console.WriteLine(Wimbledon.Matchcount + " total matches played in tournament");
+                Console.WriteLine(tournament.Matchcount + " total matches played in tournament");
             }
             catch (GendersOfPlayersInMatchException e)
             {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using Microsoft.VisualBasic.FileIO;
 
-namespace kursusgang6_opgaver
+namespace tennis_tournament
 {
     class ReadCSVFile
     {
