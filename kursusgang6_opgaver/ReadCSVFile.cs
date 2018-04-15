@@ -55,12 +55,7 @@ namespace kursusgang6_opgaver
             }
         }
 
-        public void LoadMaleReferees()
-        {
-            // missing
-        }
-
-        public void LoadFemaleReferees()
+        public void LoadReferees(sex gender)
         {
             // missing
         }
