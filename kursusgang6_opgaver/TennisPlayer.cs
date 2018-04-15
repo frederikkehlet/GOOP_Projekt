@@ -15,20 +15,10 @@ namespace kursusgang6_opgaver
         public string LastName { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string Nationality { get; set; }
+        public int Age { get { return calcAge(); } }
         public sex Gender { get; set; }
 
-        // Constructor til folk uden mellemnavne
-        public TennisPlayer(string firstName, string lastName, string birthDate,
-            string nationality, sex gender)
-        {
-            FirstName = firstName;
-            LastName = lastName;
-            DateOfBirth = DateTime.ParseExact(birthDate, "yyyy-MM-dd", null);
-            Nationality = nationality;
-            Gender = gender;
-        }
-
-        // Constructor til folk med mellemnavne
+        // Constructor 
         public TennisPlayer(string firstName, string middleName, string lastName, string birthDate,
             string nationality, sex gender)
         {
@@ -43,12 +33,11 @@ namespace kursusgang6_opgaver
         public override string ToString()
         {
             string Name = String.Format("{0} {1} {2}", FirstName, MiddleName, LastName);
-            string age = Convert.ToString(Age(DateOfBirth));
             return String.Format("Name: {0} \nDate of birth: {1}\nAge: {2}\nNationality: {3}\nGender: {4}\n",
-                Name,DateOfBirth.ToShortDateString(),age, Nationality,Gender);
+                Name,DateOfBirth.ToShortDateString(),Age, Nationality,Gender);
         }
 
-        public int Age(DateTime dateOfBirth)
+        private int calcAge()
         {
             // get current date
             var now = DateTime.Today;
@@ -57,13 +46,13 @@ namespace kursusgang6_opgaver
             var currentYear = DateTime.Parse(Convert.ToString(now)).Year;
 
             // get year only from birthdate
-            var birthYear = DateTime.Parse(Convert.ToString(dateOfBirth)).Year;
+            var birthYear = DateTime.Parse(Convert.ToString(DateOfBirth)).Year;
 
             // calculate "rough" age
             var age = currentYear - birthYear; 
             
             // check if birthday has passed within current year
-            if (now < dateOfBirth.AddYears(age)) age--;
+            if (now < DateOfBirth.AddYears(age)) age--;
             return age;
         }
     }

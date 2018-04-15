@@ -84,18 +84,6 @@ namespace kursusgang6_opgaver
                 if (input == "exit") Environment.Exit(-1);
                 else Main();
             }
-            //DateTime date = new DateTime(1994, 09, 28);
-            //DateTime date1 = new DateTime(2016, 10, 24);
-            // Console.WriteLine(String.Format("{0} {1}",date.DayOfWeek,date1.DayOfWeek));
-            // DK 24-12-2001
-            // US 12/24/2001
-            // ISO 2001-12-24 
-            /* var wife = new Person("Anna", null);
-            var husband = new Person("Bent", wife);
-            wife.Spouse = husband;
-            Console.WriteLine(String.Format("{0}\n{1}",wife.ToString(),husband.ToString()));*/
-
-
         }
     }
 }

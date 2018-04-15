@@ -21,7 +21,7 @@ namespace kursusgang6_opgaver
 
         private int InitialMatches(int numOfPlayers)
         {
-            // returns half of the number of players, i.e. if there are 64 initial players, 32 matches need to be played
+            // returns half of the number of players, i.e. if there are 64 initial players, 32 initial matches need to be played
             if (numOfPlayers % 2 != 0)
             {
                 return 0;
