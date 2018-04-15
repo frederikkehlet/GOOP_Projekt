@@ -34,26 +34,6 @@ namespace kursusgang6_opgaver
             }
             return specifiedListOfPlayers;
         }
-        
-        /*public void LoadMalePlayers()
-        {
-            TextFieldParser par = new TextFieldParser(FileName);
-            par.TextFieldType = FieldType.Delimited;
-            par.SetDelimiters(Delimiter);
-
-            while (!par.EndOfData)
-            {
-                string[] fields = par.ReadFields();
-                string firstName = fields[1];
-                string middleName = fields[2];
-                string lastName = fields[3];
-                string birthdate = fields[4];
-                string nationality = fields[5];
-                // create player object
-                var player = new TennisPlayer(firstName, middleName, lastName, birthdate, nationality, sex.male);
-                players.Add(player);
-            }
-        }*/
 
         public void LoadPlayers(sex gender)
         {
