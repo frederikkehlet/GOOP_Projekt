@@ -15,8 +15,6 @@ namespace tennis_tournament
         public TennisPlayer Player1 { get; }
         public TennisPlayer Player2 { get; }
         public Referee Ref { get; }
-        public int Player1Score { get; set; }
-        public int Player2Score { get; set; }
 
         public int Sets
         {
@@ -31,14 +29,13 @@ namespace tennis_tournament
             }
         }
 
+        // Constructor
         public Match(TennisPlayer player1, TennisPlayer player2, Referee Ref)
         {
             Player1 = player1;
             Player2 = player2;
             Sets = sets;
             this.Ref = Ref;
-            Player1Score = 0;
-            Player2Score = 0;
         }
 
         public override string ToString()

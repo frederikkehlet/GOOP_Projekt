@@ -57,8 +57,19 @@ namespace tennis_tournament
 
         public void LoadReferees(sex gender)
         {
-            // missing
+            TextFieldParser par = new TextFieldParser(FileName);
+            par.TextFieldType = FieldType.Delimited;
+            par.SetDelimiters(Delimiter);
+
+            while (!par.EndOfData)
+            {
+                string[] fields = par.ReadFields();
+
+            }
         }
+
+        // list players by first name method
+        // list player by last name method
 
         public override string ToString()
         {

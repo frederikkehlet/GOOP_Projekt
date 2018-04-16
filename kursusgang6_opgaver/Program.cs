@@ -8,6 +8,7 @@ using System.Diagnostics;
 
 namespace tennis_tournament
 {
+    public enum sex { female, male }
     class Program
     {
         static void Main()
@@ -33,7 +34,7 @@ namespace tennis_tournament
                 Console.WriteLine("\nPlease enter the gender of players (f/m): ");
                 char gender = char.Parse(Console.ReadLine());
 
-                Gamemaster gamemaster = new Gamemaster("Kaj", "Kim", "Hansen", "1999-01-27", sex.male, "1999-01-01", "2009-01-01");
+                Gamemaster gamemaster = new Gamemaster("Kaj", "Kim", "Hansen", "1999-01-27", sex.male, "Danish","1999-01-01", "2009-01-01");
 
                 var MalePlayers = new ReadCSVFile(@"..\Txt files\MalePlayer.txt");
                 var FemalePlayers = new ReadCSVFile(@"..\Txt files\FemalePlayer.txt");

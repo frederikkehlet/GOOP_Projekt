@@ -8,7 +8,7 @@ namespace tennis_tournament
 {
     class Gamemaster : Referee
     {
-        public Gamemaster(string firstName, string middleName, string lastName, string dateOfBirth, sex gender, string licenseAquired, string lincenseRenewed): 
-            base(firstName, middleName, lastName, dateOfBirth, gender, licenseAquired, lincenseRenewed) {}
+        public Gamemaster(string firstName, string middleName, string lastName, string dateOfBirth, sex gender, string nationality, string licenseAquired, string lincenseRenewed): 
+            base(firstName, middleName, lastName, dateOfBirth, gender, nationality, licenseAquired, lincenseRenewed) {}
     }
 }
