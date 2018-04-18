@@ -45,7 +45,10 @@ namespace tennis_tournament
                 "\nNumber of initial matches: {4}\n\nGamemaster: \n{5}",
                 Name, FromDate.ToShortDateString(), ToDate.ToShortDateString(), NumOfPlayers, NumOfMatches, Gamemaster);
         }
-
+        /// <summary>
+        /// Simulates an entire tournament
+        /// </summary>
+        /// <param name="playersInTournament"></param>
         public void SimulateTournament(List<TennisPlayer> playersInTournament)
         {            
             if (playersInTournament.Count == 1)

@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace tennis_tournament
 {
-    public abstract class Person
+    public enum sex { female, male }
+
+    public abstract class Person // the program does not use Person objects, therefore the class is abstract
     {
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
@@ -15,7 +17,15 @@ namespace tennis_tournament
         public string Nationality { get; set; }
         public int Age { get; set; }
         public sex Gender { get; set; }
-
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="firstName">First name</param>
+        /// <param name="middleName">Middle name</param>
+        /// <param name="lastName">Last name</param>
+        /// <param name="birthDate">Birthdate in yyyy-MM-dd format</param>
+        /// <param name="nationality">Nationality</param>
+        /// <param name="gender">Gender</param>
         // Constructor 
         public Person(string firstName, string middleName, string lastName, string birthDate,
             string nationality, sex gender)

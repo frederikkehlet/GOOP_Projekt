@@ -10,7 +10,17 @@ namespace tennis_tournament
     {
         public DateTime LicenseAquired { get; set; }
         public DateTime LicenseRenewed { get; set; }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="firstName"></param>
+        /// <param name="middleName"></param>
+        /// <param name="lastName"></param>
+        /// <param name="dateOfBirth"></param>
+        /// <param name="gender"></param>
+        /// <param name="nationality"></param>
+        /// <param name="licenseAquired"></param>
+        /// <param name="licenseRenewed"></param>
         public Referee(string firstName, string middleName, string lastName, string dateOfBirth,
             sex gender, string nationality, string licenseAquired, string licenseRenewed): base(firstName,middleName,lastName,dateOfBirth,nationality,gender)
         {

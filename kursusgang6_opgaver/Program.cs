@@ -8,7 +8,6 @@ using System.Diagnostics;
 
 namespace tennis_tournament
 {
-    public enum sex { female, male }
     class Program
     {
         static void Main()
@@ -55,7 +54,6 @@ namespace tennis_tournament
 
                 Console.Clear();
                 Console.WriteLine(tournament.ToString()); 
-
                 tournament.SimulateTournament(playersInTournament); // simulates tournament
 
                 Console.WriteLine(tournament.Matchcount + " total matches played in tournament");
