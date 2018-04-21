@@ -131,10 +131,18 @@ namespace tennis_tournament
             {
                 int serve = rnd.Next(1, 3); // used to determine who wins the point (1 and 2)
 
-                if (serve == 1) point[0]++;
-                else point[1]++;
+                if (serve == 1) point[0]++; // the point goes to player 1
+                else point[1]++; // the point goes to player 2
             }
             return point;
         }
+
+        // method for getting number of sets played in the game
+        /* private int SetsInGame()
+        {
+            // WIP
+        }*/
+
+        // method for adding and removing referees
     }
 }

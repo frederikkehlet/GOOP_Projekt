@@ -17,16 +17,7 @@ namespace tennis_tournament
         public string Nationality { get; set; }
         public int Age { get; set; }
         public sex Gender { get; set; }
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="firstName">First name</param>
-        /// <param name="middleName">Middle name</param>
-        /// <param name="lastName">Last name</param>
-        /// <param name="birthDate">Birthdate in yyyy-MM-dd format</param>
-        /// <param name="nationality">Nationality</param>
-        /// <param name="gender">Gender</param>
-        // Constructor 
+       
         public Person(string firstName, string middleName, string lastName, string birthDate,
             string nationality, sex gender)
         {

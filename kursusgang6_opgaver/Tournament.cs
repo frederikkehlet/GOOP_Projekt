@@ -26,7 +26,8 @@ namespace tennis_tournament
             else return numOfPlayers / 2;
         }
 
-        public Tournament(string name, int year, string fromDate, string toDate, int numOfPlayers, List<TennisPlayer> playersInTournament, Gamemaster gamemaster)
+        public Tournament(string name, int year, string fromDate, string toDate, 
+            int numOfPlayers, List<TennisPlayer> playersInTournament, Gamemaster gamemaster)
         {
             Name = name;
             Year = year;
@@ -45,13 +46,11 @@ namespace tennis_tournament
                 "\nNumber of initial matches: {4}\n\nGamemaster: \n{5}",
                 Name, FromDate.ToShortDateString(), ToDate.ToShortDateString(), NumOfPlayers, NumOfMatches, Gamemaster);
         }
-        /// <summary>
-        /// Simulates an entire tournament
-        /// </summary>
-        /// <param name="playersInTournament"></param>
+
+        // Recursive method that simulates a tournament
         public void SimulateTournament(List<TennisPlayer> playersInTournament)
         {            
-            if (playersInTournament.Count == 1)
+            if (playersInTournament.Count == 1) // base case
             {
                 Console.WriteLine("The winner is \n" + playersInTournament[0]);
             }
@@ -75,7 +74,7 @@ namespace tennis_tournament
                     i = i + 2;
                     Matchcount++;
                 }
-                SimulateTournament(winners);
+                SimulateTournament(winners); // recursive call
             }
         }
 
