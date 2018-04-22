@@ -9,7 +9,7 @@ namespace tennis_tournament
     class Tournament
     {
         Random rnd = new Random(DateTime.Now.Millisecond);
-
+        private int roundCounter = 1;
         public string Name { get; set; }
         public int Year { get; set; }
         public DateTime FromDate { get; set; }
@@ -77,6 +77,7 @@ namespace tennis_tournament
             }
             else
             {
+                Console.WriteLine("-------------------- ROUND " + roundCounter + " --------------------");
                 List<TennisPlayer> winners = new List<TennisPlayer>();
                 int i = 0;
                 while (winners.Count != playersInTournament.Count / 2)
@@ -97,6 +98,7 @@ namespace tennis_tournament
                     i = i + 2;
                     Matchcount++;
                 }
+                roundCounter++;
                 SimulateTournament(winners); // recursive call
             }
         }

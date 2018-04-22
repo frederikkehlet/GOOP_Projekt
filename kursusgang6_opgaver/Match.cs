@@ -16,6 +16,7 @@ namespace tennis_tournament
         public TennisPlayer Player2 { get; }
         public Referee Ref { get; }
 
+        // The Sets property is determined by equivalent sex
         public int Sets
         {
             get { return sets; }
@@ -139,7 +140,5 @@ namespace tennis_tournament
         {
             Console.WriteLine("Sets in game: " + sets);
         }
-
-        // method for adding and removing referees
     }
 }
