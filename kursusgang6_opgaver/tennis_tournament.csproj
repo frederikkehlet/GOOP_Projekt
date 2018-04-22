@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{90C1DEC0-5DAF-4F01-96DC-DBB25C98FCB3}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>kursusgang6_opgaver</RootNamespace>
-    <AssemblyName>kursusgang6_opgaver</AssemblyName>
+    <RootNamespace>tennis_tournament</RootNamespace>
+    <AssemblyName>tennis_tournament</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
