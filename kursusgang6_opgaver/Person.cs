@@ -39,11 +39,8 @@ namespace tennis_tournament
 
         private int calcAge()
         {
-            // get current date
-            var now = DateTime.Today;
-
             // get year only from current date
-            var currentYear = DateTime.Parse(Convert.ToString(now)).Year;
+            var currentYear = DateTime.Parse(Convert.ToString(DateTime.Today)).Year;
 
             // get year only from birthdate
             var birthYear = DateTime.Parse(Convert.ToString(DateOfBirth)).Year;
@@ -52,7 +49,7 @@ namespace tennis_tournament
             var age = currentYear - birthYear;
 
             // check if birthday has passed within current year
-            if (now < DateOfBirth.AddYears(age)) age--;
+            if (DateTime.Today < DateOfBirth.AddYears(age)) age--;
             return age;
         }
     }
