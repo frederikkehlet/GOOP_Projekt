@@ -70,6 +70,7 @@ namespace tennis_tournament
 
         // list players by first name method
         // list player by last name method
+        // needs functionality that picks a random referee and makes it the gamemaster
 
         public override string ToString()
         {
