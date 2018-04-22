@@ -39,8 +39,8 @@ namespace tennis_tournament
                 var FemalePlayers = new ReadCSVFile(@"..\Txt files\FemalePlayer.txt");
                 MalePlayers.LoadPlayers(sex.male);
                 FemalePlayers.LoadPlayers(sex.female);
-
                 List<TennisPlayer> playersInTournament = new List<TennisPlayer>();
+
 
                 if (gender == 'm') playersInTournament = MalePlayers.GetListOfPlayers(playerCount);
                 else if (gender == 'f') playersInTournament = FemalePlayers.GetListOfPlayers(playerCount);
@@ -48,6 +48,14 @@ namespace tennis_tournament
 
                 Tournament tournament = new Tournament(name, year, toDate, fromDate, playersInTournament.Count, playersInTournament, gamemaster);
 
+                      
+
+                foreach (var player in playersInTournament)
+                {
+                    Console.WriteLine(player);
+                }
+
+                /*
                 Console.Clear();
                 Console.WriteLine("Simulating...");
                 System.Threading.Thread.Sleep(3000);
@@ -56,7 +64,7 @@ namespace tennis_tournament
                 Console.WriteLine(tournament.ToString()); 
                 tournament.SimulateTournament(playersInTournament); // simulates tournament
 
-                Console.WriteLine(tournament.Matchcount + " total matches played in tournament");
+                Console.WriteLine(tournament.Matchcount + " total matches played in tournament");*/
             }
             catch (GendersOfPlayersInMatchException e)
             {
