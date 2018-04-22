@@ -10,8 +10,8 @@ namespace tennis_tournament
 {
     class ReadCSVFile
     {
-        private List<TennisPlayer> players = new List<TennisPlayer>();
-        private List<Referee> referees = new List<Referee>();
+        public List<TennisPlayer> Players = new List<TennisPlayer>();
+        public List<Referee> Referees = new List<Referee>();
         public string FileName { get; set; }
         public string Delimiter { get; set; }
 
@@ -21,28 +21,14 @@ namespace tennis_tournament
             Delimiter = delimiter;
         }
 
-        public List<TennisPlayer> GetListOfPlayers()
+        public void LoadPlayers(sex gender, int playerCount)
         {
-            return players;
-        }
-
-        public List<TennisPlayer> GetListOfPlayers(int numOfPlayers)
-        {
-            List<TennisPlayer> specifiedListOfPlayers = new List<TennisPlayer>();
-            for (int i = 0; i < numOfPlayers; i++)
-            {
-                specifiedListOfPlayers.Add(players[i]);
-            }
-            return specifiedListOfPlayers;
-        }
-
-        public void LoadPlayers(sex gender)
-        {
+            int playersAdded = 0;
             TextFieldParser par = new TextFieldParser(FileName);
             par.TextFieldType = FieldType.Delimited;
             par.SetDelimiters(Delimiter);
 
-            while (!par.EndOfData)
+            while (!par.EndOfData && playersAdded < playerCount)
             {
                 string[] fields = par.ReadFields();
                 string firstName = fields[1];
@@ -52,7 +38,8 @@ namespace tennis_tournament
                 string nationality = fields[5];
                 // create player object
                 var player = new TennisPlayer(firstName, middleName, lastName, birthdate, nationality, gender);
-                players.Add(player);
+                Players.Add(player);
+                playersAdded++;
             }
         }
 
@@ -75,7 +62,7 @@ namespace tennis_tournament
 
                 var referee = new Referee(firstName, middleName, lastName, birthdate, 
                     gender, nationality, licenseAquired, licenseRenewed);
-                referees.Add(referee);
+                Referees.Add(referee);
             }
         }
 
@@ -90,7 +77,7 @@ namespace tennis_tournament
         public override string ToString()
         {
             string result = "";
-            foreach (var player in players)
+            foreach (var player in Players)
             {
                 result += player + "\n";
             }

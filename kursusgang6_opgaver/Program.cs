@@ -31,26 +31,52 @@ namespace tennis_tournament
                 int playerCount = int.Parse(Console.ReadLine());
 
                 Console.WriteLine("\nPlease enter the gender of players (f/m): ");
-                char gender = char.Parse(Console.ReadLine());
-
-                var MalePlayers = new ReadCSVFile(@"..\Txt files\MalePlayer.txt");
-                var FemalePlayers = new ReadCSVFile(@"..\Txt files\FemalePlayer.txt");
-                MalePlayers.LoadPlayers(sex.male);
-                FemalePlayers.LoadPlayers(sex.female);
+                char genderPlayer = char.Parse(Console.ReadLine());
 
                 List<TennisPlayer> playersInTournament = new List<TennisPlayer>();
 
-                if (gender == 'm') playersInTournament = MalePlayers.GetListOfPlayers(playerCount);
-                else if (gender == 'f') playersInTournament = FemalePlayers.GetListOfPlayers(playerCount);
+                // Load players
+                if (genderPlayer == 'm')
+                {
+                    var Male = new ReadCSVFile(@"..\Txt files\MalePlayer.txt");
+                    Male.LoadPlayers(sex.male,playerCount);
+                    playersInTournament = Male.Players;
+                }
+                else if (genderPlayer == 'f')
+                {
+                    var Female = new ReadCSVFile(@"..\Txt files\FemalePlayer.txt");
+                    Female.LoadPlayers(sex.female,playerCount);
+                    playersInTournament = Female.Players;
+                }
                 else throw new GendersOfPlayersInMatchException("Gender format incorrect");
 
-                Tournament tournament = new Tournament(name, year, toDate, fromDate, playersInTournament.Count, playersInTournament, gamemaster);
+                Console.WriteLine("\nPlease enter the gender of referees (f/m): ");
+                char genderRef = char.Parse(Console.ReadLine());
+
+                List<Referee> refereesInTournament = new List<Referee>();
+
+                // Load referees 
+                if (genderRef == 'm')
+                {
+                    var Male = new ReadCSVFile(@"..\Txt files\MaleRefs.txt");
+                    Male.LoadReferees(sex.male);
+                    refereesInTournament = Male.Referees;
+                }
+                else if (genderRef == 'f')
+                {
+                    var Female = new ReadCSVFile(@"..\Txt files\FemaleRefs.txt");
+                    Female.LoadReferees(sex.male);
+                    refereesInTournament = Female.Referees;
+                }
+                else throw new GendersOfPlayersInMatchException("Gender format incorrect");
+
+                Tournament tournament = new Tournament(name, year, fromDate, toDate, playersInTournament.Count, playersInTournament, refereesInTournament);
 
                 Console.WriteLine("Simulating...");
                 System.Threading.Thread.Sleep(3000);
 
                 Console.Clear();
-                Console.WriteLine(tournament.ToString()); 
+                Console.WriteLine(tournament.ToString());
                 tournament.SimulateTournament(playersInTournament); // simulates tournament
 
                 Console.WriteLine(tournament.Matchcount + " total matches played in tournament");
@@ -64,6 +90,10 @@ namespace tennis_tournament
                 Console.WriteLine(e.Message);
             }
             catch (TournamentDatesException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            catch (StackOverflowException e)
             {
                 Console.WriteLine(e.Message);
             }

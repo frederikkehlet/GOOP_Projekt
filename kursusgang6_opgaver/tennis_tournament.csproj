@@ -64,7 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FemalePlayer.txt" />
-    <Content Include="FermaleRefs.txt" />
+    <Content Include="FemaleRefs.txt" />
     <Content Include="MalePlayer.txt" />
     <Content Include="MaleRefs.txt" />
   </ItemGroup>

@@ -8,6 +8,8 @@ namespace tennis_tournament
 {
     class Tournament
     {
+        Random rnd = new Random(DateTime.Now.Millisecond);
+
         public string Name { get; set; }
         public int Year { get; set; }
         public DateTime FromDate { get; set; }
@@ -16,7 +18,7 @@ namespace tennis_tournament
         public int NumOfMatches { get; }
         public List<TennisPlayer> PlayersInTournament { get; set; }
         Gamemaster Gamemaster { get; }
-        Referee Ref { get; }
+        public List<Referee> RefereesInTournament { get; }
         public int Matchcount { get; set; }
 
         private int InitialMatches(int numOfPlayers)
@@ -26,20 +28,38 @@ namespace tennis_tournament
             else return numOfPlayers / 2;
         }
 
-        public Tournament(string name, int year, string fromDate, string toDate, 
-            int numOfPlayers, List<TennisPlayer> playersInTournament, Gamemaster gamemaster)
+        public Tournament(string name, int year, string fromDate, string toDate,
+            int numOfPlayers, List<TennisPlayer> playersInTournament, List<Referee> refereesInTournament)
         {
             Name = name;
             Year = year;
             FromDate = DateTime.ParseExact(fromDate, "yyyy-MM-dd", null);
             ToDate = DateTime.ParseExact(toDate, "yyyy-MM-dd", null);
-            if (FromDate > ToDate) throw new TournamentDatesException("The start date has to be before the end date");
             NumOfPlayers = numOfPlayers;
             NumOfMatches = InitialMatches(NumOfPlayers);
             PlayersInTournament = playersInTournament;
-            Gamemaster = gamemaster;
+            RefereesInTournament = refereesInTournament;
+            Gamemaster = SetGamemaster(RefereesInTournament);
         }
 
+        private Gamemaster SetGamemaster(List<Referee> refereesInTournament)
+        {
+            // pick a random referee and set to game master           
+            Referee referee = refereesInTournament[rnd.Next(1, refereesInTournament.Count)];
+
+            // Map the properties
+            string firstName = referee.FirstName;
+            string middleName = referee.MiddleName;
+            string lastName = referee.LastName;
+            string dateOfBirth = referee.DateOfBirth.ToString("yyyy-MM-dd");
+            sex gender = referee.Gender;
+            string nationality = referee.Nationality;
+            string licenseAquired = referee.LicenseAquired.ToString("yyyy-MM-dd");
+            string licenseRenewed = referee.LicenseRenewed.ToString("yyyy-MM-dd");
+
+            Gamemaster gamemaster = new Gamemaster(firstName, middleName, lastName, dateOfBirth, gender, nationality, licenseAquired, licenseRenewed);
+            return gamemaster;
+        }
 
         public override string ToString()
         {
@@ -50,7 +70,7 @@ namespace tennis_tournament
 
         // Recursive method that simulates a tournament
         public void SimulateTournament(List<TennisPlayer> playersInTournament)
-        {            
+        {
             if (playersInTournament.Count == 1) // base case
             {
                 Console.WriteLine("The winner is \n" + playersInTournament[0]);
@@ -60,8 +80,10 @@ namespace tennis_tournament
                 List<TennisPlayer> winners = new List<TennisPlayer>();
                 int i = 0;
                 while (winners.Count != playersInTournament.Count / 2)
-                { 
-                    Match match = new Match(playersInTournament[i], playersInTournament[i + 1], Ref);
+                {
+                    Match match = new Match(playersInTournament[i], playersInTournament[i + 1], RefereesInTournament[rnd.Next(1, RefereesInTournament.Count)]);
+                    Console.WriteLine(match.ToString());
+
                     TennisPlayer winner = match.SimulateMatch();
                     System.Threading.Thread.Sleep(1000);
                     if (winner == playersInTournament[i])
@@ -87,6 +109,16 @@ namespace tennis_tournament
         public void RemovePlayerFromTournament(TennisPlayer player)
         {
             PlayersInTournament.Remove(player);
+        }
+
+        public void AddRefereeToTournament(Referee referee)
+        {
+            RefereesInTournament.Add(referee);
+        }
+
+        public void RemoveRefereeFromTournament(Referee referee)
+        {
+            RefereesInTournament.Remove(referee);
         }
     }
 }

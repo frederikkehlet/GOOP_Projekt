@@ -46,16 +46,13 @@ namespace tennis_tournament
             string player2Name = String.Format("{0} {1} {2}",
             Player2.FirstName, Player2.MiddleName, Player2.LastName);
 
-            return String.Format("Sets: {0}\n{1} vs {2}\nReferee: {3}",
-            Sets, player1Name, player2Name, (Ref.FirstName + " " + Ref.LastName));
+            return String.Format("{0} vs {1}\nReferee: {2}",
+            player1Name, player2Name, (Ref.FirstName + " " + Ref.LastName));
         }
 
         // Simulates a match based on gender, displays match result and returns a winner
         public TennisPlayer SimulateMatch()
-        {
-            Console.WriteLine(Player1.FirstName + " " + Player1.LastName +
-                " vs " + Player2.FirstName + " " + Player2.LastName);
-          
+        {          
             int[,] menMatch = new int[5, 2];
             int[,] womenMatch = new int[3, 2];
             int setcounter = 0;
@@ -92,7 +89,6 @@ namespace tennis_tournament
                 }
                 PrintMatchResults(womenMatch);
             }
-
             SetsInGame(setcounter);
             return GetWinner(player1Wins, player2Wins);
         }
