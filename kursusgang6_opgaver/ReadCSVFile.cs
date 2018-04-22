@@ -11,6 +11,7 @@ namespace tennis_tournament
     class ReadCSVFile
     {
         private List<TennisPlayer> players = new List<TennisPlayer>();
+        private List<Referee> referees = new List<Referee>();
         public string FileName { get; set; }
         public string Delimiter { get; set; }
 
@@ -64,11 +65,25 @@ namespace tennis_tournament
             while (!par.EndOfData)
             {
                 string[] fields = par.ReadFields();
+                string firstName = fields[1];
+                string middleName = fields[2];
+                string lastName = fields[3];
+                string birthdate = fields[4];
+                string nationality = fields[5];
+                string licenseAquired = fields[7];
+                string licenseRenewed = fields[8];
 
+                var referee = new Referee(firstName, middleName, lastName, birthdate, 
+                    gender, nationality, licenseAquired, licenseRenewed);
+                referees.Add(referee);
             }
         }
 
         // list players by first name method
+        public void SortByFirstName(List<TennisPlayer> players)
+        {
+            players.Sort();
+        }
         // list player by last name method
 
         public override string ToString()

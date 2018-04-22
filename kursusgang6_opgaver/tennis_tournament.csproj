@@ -54,6 +54,7 @@
     <Compile Include="Referee.cs" />
     <Compile Include="TennisPlayer.cs" />
     <Compile Include="Tournament.cs" />
+    <Compile Include="TournamentDatesException.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

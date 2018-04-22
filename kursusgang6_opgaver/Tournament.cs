@@ -33,6 +33,7 @@ namespace tennis_tournament
             Year = year;
             FromDate = DateTime.ParseExact(fromDate, "yyyy-MM-dd", null);
             ToDate = DateTime.ParseExact(toDate, "yyyy-MM-dd", null);
+            if (FromDate > ToDate) throw new TournamentDatesException("The start date has to be before the end date");
             NumOfPlayers = numOfPlayers;
             NumOfMatches = InitialMatches(NumOfPlayers);
             PlayersInTournament = playersInTournament;

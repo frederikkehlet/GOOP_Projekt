@@ -89,10 +89,11 @@ namespace tennis_tournament
                     womenMatch[setcounter, 0] = set[0];
                     womenMatch[setcounter, 1] = set[1];
                     setcounter++;
-
                 }
                 PrintMatchResults(womenMatch);
             }
+
+            SetsInGame(setcounter);
             return GetWinner(player1Wins, player2Wins);
         }
 
@@ -137,11 +138,11 @@ namespace tennis_tournament
             return point;
         }
 
-        // method for getting number of sets played in the game
-        /* private int SetsInGame()
+        // method for displaying number of sets played in the game
+        private void SetsInGame(int sets)
         {
-            // WIP
-        }*/
+            Console.WriteLine("Sets in game: " + sets);
+        }
 
         // method for adding and removing referees
     }

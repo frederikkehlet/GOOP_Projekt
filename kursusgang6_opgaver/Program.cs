@@ -33,14 +33,12 @@ namespace tennis_tournament
                 Console.WriteLine("\nPlease enter the gender of players (f/m): ");
                 char gender = char.Parse(Console.ReadLine());
 
-                Gamemaster gamemaster = new Gamemaster("Kaj", "Kim", "Hansen", "1999-01-27", sex.male, "Danish","1999-01-01", "2009-01-01");
-
                 var MalePlayers = new ReadCSVFile(@"..\Txt files\MalePlayer.txt");
                 var FemalePlayers = new ReadCSVFile(@"..\Txt files\FemalePlayer.txt");
                 MalePlayers.LoadPlayers(sex.male);
                 FemalePlayers.LoadPlayers(sex.female);
-                List<TennisPlayer> playersInTournament = new List<TennisPlayer>();
 
+                List<TennisPlayer> playersInTournament = new List<TennisPlayer>();
 
                 if (gender == 'm') playersInTournament = MalePlayers.GetListOfPlayers(playerCount);
                 else if (gender == 'f') playersInTournament = FemalePlayers.GetListOfPlayers(playerCount);
@@ -48,15 +46,6 @@ namespace tennis_tournament
 
                 Tournament tournament = new Tournament(name, year, toDate, fromDate, playersInTournament.Count, playersInTournament, gamemaster);
 
-                      
-
-                foreach (var player in playersInTournament)
-                {
-                    Console.WriteLine(player);
-                }
-
-                /*
-                Console.Clear();
                 Console.WriteLine("Simulating...");
                 System.Threading.Thread.Sleep(3000);
 
@@ -64,13 +53,17 @@ namespace tennis_tournament
                 Console.WriteLine(tournament.ToString()); 
                 tournament.SimulateTournament(playersInTournament); // simulates tournament
 
-                Console.WriteLine(tournament.Matchcount + " total matches played in tournament");*/
+                Console.WriteLine(tournament.Matchcount + " total matches played in tournament");
             }
             catch (GendersOfPlayersInMatchException e)
             {
                 Console.WriteLine(e.Message);
             }
             catch (PlayerCountUnevenException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            catch (TournamentDatesException e)
             {
                 Console.WriteLine(e.Message);
             }
