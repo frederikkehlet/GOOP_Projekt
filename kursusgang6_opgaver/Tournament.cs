@@ -71,7 +71,7 @@ namespace tennis_tournament
         // Recursive method that simulates a tournament
         public void SimulateTournament(List<TennisPlayer> playersInTournament)
         {
-            if (playersInTournament.Count == 1) // base case
+            if (playersInTournament.Count == 1) // base case is one player left, i.e. the winner
             {
                 Console.WriteLine("The winner is \n" + playersInTournament[0]);
             }
