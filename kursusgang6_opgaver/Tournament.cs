@@ -11,15 +11,38 @@ namespace tennis_tournament
         Random rnd = new Random(DateTime.Now.Millisecond);
         private int roundCounter = 1;
         private int matchCounter = 1;
-
+        /// <summary>
+        /// The name of the tournament
+        /// </summary>
         public string Name { get; set; }
+        /// <summary>
+        /// The year of the tournament
+        /// </summary>
         public int Year { get; set; }
+        /// <summary>
+        /// The start date of the tournament
+        /// </summary>
         public DateTime FromDate { get; set; }
+        /// <summary>
+        /// The end date of the tournament
+        /// </summary>
         public DateTime ToDate { get; set; }
-        public int NumOfPlayers { get; set; }
+        /// <summary>
+        /// The number of players participating in the tournament
+        /// </summary>
+        public int NumOfPlayers { get; }
+        /// <summary>
+        /// The number of initial matches
+        /// </summary>
         public int NumOfMatches { get; }
+        /// <summary>
+        /// The list of players participating in the tournament
+        /// </summary>
         public List<TennisPlayer> PlayersInTournament { get; set; }
         Gamemaster Gamemaster { get; }
+        /// <summary>
+        /// The list of referees participating in the tournament
+        /// </summary>
         public List<Referee> RefereesInTournament { get; }
 
         private int InitialMatches(int numOfPlayers)
@@ -36,7 +59,7 @@ namespace tennis_tournament
             Year = year;
             FromDate = DateTime.ParseExact(fromDate, "yyyy-MM-dd", null);
             ToDate = DateTime.ParseExact(toDate, "yyyy-MM-dd", null);
-            NumOfPlayers = numOfPlayers;
+            NumOfPlayers = playersInTournament.Count;
             NumOfMatches = InitialMatches(NumOfPlayers);
             PlayersInTournament = playersInTournament;
             RefereesInTournament = refereesInTournament;
@@ -58,6 +81,7 @@ namespace tennis_tournament
             string licenseAquired = referee.LicenseAquired.ToString("yyyy-MM-dd");
             string licenseRenewed = referee.LicenseRenewed.ToString("yyyy-MM-dd");
 
+            // return game master
             Gamemaster gamemaster = new Gamemaster(firstName, middleName, lastName, dateOfBirth, gender, nationality, licenseAquired, licenseRenewed);
             return gamemaster;
         }
@@ -69,7 +93,6 @@ namespace tennis_tournament
                 Name, FromDate.ToShortDateString(), ToDate.ToShortDateString(), NumOfPlayers, NumOfMatches, Gamemaster);
         }
 
-        // Recursive method that simulates a tournament
         public void SimulateTournament()
         {
             int PlayersInRound = PlayersInTournament.Count;
@@ -110,6 +133,32 @@ namespace tennis_tournament
 
                 SimulateTournament(); // recursive call
             }
+        }
+
+        public void ListPlayersByFirstName()
+        {
+            List<TennisPlayer> OrderedList = PlayersInTournament.OrderBy(p => p.FirstName).ToList();
+
+            int playersListed = 0;
+            foreach (var player in OrderedList)
+            {
+                Console.WriteLine(player.ToString());
+                playersListed++;
+            }
+            Console.WriteLine("Players listed: " + playersListed);
+        }
+
+        public void ListPlayersByLastName()
+        {
+            List<TennisPlayer> OrderedList = PlayersInTournament.OrderBy(p => p.LastName).ToList();
+
+            int playersListed = 0;
+            foreach (var player in OrderedList)
+            {
+                Console.WriteLine(player.ToString());
+                playersListed++;
+            }
+            Console.WriteLine("Players listed: " + playersListed);
         }
 
         // overloaded methods to add and remove players/referees

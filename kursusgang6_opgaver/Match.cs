@@ -8,7 +8,7 @@ namespace tennis_tournament
 {
     class Match
     {
-        private Random rnd = new Random(DateTime.Now.Millisecond);
+        Random rnd = new Random(DateTime.Now.Millisecond);
         private int sets;
         private int player1Wins = 0, player2Wins = 0;
 
@@ -16,7 +16,7 @@ namespace tennis_tournament
         public TennisPlayer Player2 { get; }
         public Referee Ref { get; }
 
-        // The Sets property is determined by equivalent sex
+        // The Sets property is determined by equivalent gender
         public int Sets
         {
             get { return sets; }
@@ -51,7 +51,6 @@ namespace tennis_tournament
             player1Name, player2Name, (Ref.FirstName + " " + Ref.LastName));
         }
 
-        // Simulates a match based on gender, displays match result and returns a winner
         public TennisPlayer SimulateMatch()
         {
             int[,] menMatch = new int[5, 2];

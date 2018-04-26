@@ -75,11 +75,10 @@ namespace tennis_tournament
                 Console.WriteLine("Simulating...");
                 System.Threading.Thread.Sleep(3000);
 
+                Console.ReadLine();
                 Console.Clear();
-                Console.WriteLine(tournament.ToString());
-
                 // simulates tournament
-                tournament.SimulateTournament(); 
+                // tournament.SimulateTournament(); 
             }
             catch (GendersOfPlayersInMatchException e)
             {
