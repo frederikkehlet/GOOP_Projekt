@@ -21,9 +21,10 @@ namespace tennis_tournament
 
         public override string ToString()
         {
-            return String.Format("First name: {0}\nLast name: {1}\nDate of birth: {2}\n" +
-                "Age: {3}\nGender: {4}\nLicense aquired: {5}\nLicense renewed: {6}\n", FirstName, LastName,
-                DateOfBirth.ToShortDateString(), Age, Gender, LicenseAquired.ToShortDateString(), LicenseRenewed.ToShortDateString());
+            return String.Format(
+                "First name: {0}\nLast name: {1}\nDate of birth: {2}\nAge: {3}\nGender: {4}\nLicense aquired: {5}\nLicense renewed: {6}\n", 
+                FirstName, LastName,DateOfBirth.ToShortDateString(), Age, Gender, LicenseAquired.ToShortDateString(), LicenseRenewed.ToShortDateString()
+                );
         }
     }
 }

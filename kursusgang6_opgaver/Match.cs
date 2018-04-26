@@ -53,7 +53,7 @@ namespace tennis_tournament
 
         // Simulates a match based on gender, displays match result and returns a winner
         public TennisPlayer SimulateMatch()
-        {          
+        {
             int[,] menMatch = new int[5, 2];
             int[,] womenMatch = new int[3, 2];
             int setcounter = 0;
@@ -114,9 +114,8 @@ namespace tennis_tournament
         {
             for (int i = 0; i < multiArray.GetLength(0); i++)
             {
-                if (multiArray[i, 0] == 00) break;
-                else Console.Write(multiArray[i, 0] + " - " + multiArray[i, 1]);
-                Console.WriteLine();
+                if (multiArray[i, 0] == 0 && multiArray[i, 1] == 0) break;
+                else Console.Write(multiArray[i, 0] + " - " + multiArray[i, 1] + "\n");
             }
         }
 

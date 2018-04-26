@@ -32,23 +32,16 @@ namespace tennis_tournament
 
         public override string ToString()
         {
-            string Name = String.Format("{0} {1} {2}", FirstName, MiddleName, LastName);
+            string fullName = String.Format("{0} {1} {2}", FirstName, MiddleName, LastName);
             return String.Format("Name: {0} \nDate of birth: {1}\nAge: {2}\nNationality: {3}\nGender: {4}\n",
-                Name, DateOfBirth.ToShortDateString(), Age, Nationality, Gender);
+                fullName, DateOfBirth.ToShortDateString(), Age, Nationality, Gender);
         }
 
         private int calcAge()
         {
-            // get year only from current date
             var currentYear = DateTime.Parse(Convert.ToString(DateTime.Today)).Year;
-
-            // get year only from birthdate
             var birthYear = DateTime.Parse(Convert.ToString(DateOfBirth)).Year;
-
-            // calculate difference in years
             var age = currentYear - birthYear;
-
-            // check if birthday has passed within current year
             if (DateTime.Today < DateOfBirth.AddYears(age)) age--;
             return age;
         }

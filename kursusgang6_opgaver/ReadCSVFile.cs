@@ -12,19 +12,19 @@ namespace tennis_tournament
     {
         public List<TennisPlayer> Players = new List<TennisPlayer>();
         public List<Referee> Referees = new List<Referee>();
-        public string FileName { get; set; }
+        public string FilePath { get; set; }
         public string Delimiter { get; set; }
 
-        public ReadCSVFile(string fileName, string delimiter = "|")
+        public ReadCSVFile(string filePath, string delimiter = "|")
         {
-            FileName = fileName;
+            FilePath = filePath;
             Delimiter = delimiter;
         }
 
         public void LoadPlayers(sex gender, int playerCount)
         {
             int playersAdded = 0;
-            TextFieldParser par = new TextFieldParser(FileName);
+            TextFieldParser par = new TextFieldParser(FilePath);
             par.TextFieldType = FieldType.Delimited;
             par.SetDelimiters(Delimiter);
 
@@ -41,11 +41,12 @@ namespace tennis_tournament
                 Players.Add(player);
                 playersAdded++;
             }
+            par.Close();
         }
 
         public void LoadReferees(sex gender)
         {
-            TextFieldParser par = new TextFieldParser(FileName);
+            TextFieldParser par = new TextFieldParser(FilePath);
             par.TextFieldType = FieldType.Delimited;
             par.SetDelimiters(Delimiter);
 
@@ -64,24 +65,7 @@ namespace tennis_tournament
                     gender, nationality, licenseAquired, licenseRenewed);
                 Referees.Add(referee);
             }
-        }
-
-        // list players by first name method
-        public void SortByFirstName(List<TennisPlayer> players)
-        {
-            players.Sort();
-        }
-        // list player by last name method
-        // needs functionality that picks a random referee and makes it the gamemaster
-
-        public override string ToString()
-        {
-            string result = "";
-            foreach (var player in Players)
-            {
-                result += player + "\n";
-            }
-            return result;
+            par.Close();
         }
     }
 }

@@ -10,6 +10,8 @@ namespace tennis_tournament
     {
         Random rnd = new Random(DateTime.Now.Millisecond);
         private int roundCounter = 1;
+        private int matchCounter = 1;
+
         public string Name { get; set; }
         public int Year { get; set; }
         public DateTime FromDate { get; set; }
@@ -19,7 +21,6 @@ namespace tennis_tournament
         public List<TennisPlayer> PlayersInTournament { get; set; }
         Gamemaster Gamemaster { get; }
         public List<Referee> RefereesInTournament { get; }
-        public int Matchcount { get; set; }
 
         private int InitialMatches(int numOfPlayers)
         {
@@ -39,13 +40,13 @@ namespace tennis_tournament
             NumOfMatches = InitialMatches(NumOfPlayers);
             PlayersInTournament = playersInTournament;
             RefereesInTournament = refereesInTournament;
-            Gamemaster = SetGamemaster(RefereesInTournament);
+            Gamemaster = SetGamemaster();
         }
 
-        private Gamemaster SetGamemaster(List<Referee> refereesInTournament)
+        private Gamemaster SetGamemaster()
         {
             // pick a random referee and set to game master           
-            Referee referee = refereesInTournament[rnd.Next(1, refereesInTournament.Count)];
+            Referee referee = RefereesInTournament[rnd.Next(1, RefereesInTournament.Count)];
 
             // Map the properties
             string firstName = referee.FirstName;
@@ -69,56 +70,65 @@ namespace tennis_tournament
         }
 
         // Recursive method that simulates a tournament
-        public void SimulateTournament(List<TennisPlayer> playersInTournament)
+        public void SimulateTournament()
         {
-            if (playersInTournament.Count == 1) // base case is one player left, i.e. the winner
+            int PlayersInRound = PlayersInTournament.Count;
+
+            if (PlayersInTournament.Count == 1) // base case is one player left, i.e. the winner
             {
-                Console.WriteLine("The winner is \n" + playersInTournament[0]);
+                Console.WriteLine("The winner is \n" + PlayersInTournament[0]);
+                Console.WriteLine((matchCounter - 1) + " total matches played in tournament");
             }
             else
             {
                 Console.WriteLine("-------------------- ROUND " + roundCounter + " --------------------");
-                List<TennisPlayer> winners = new List<TennisPlayer>();
-                int i = 0;
-                while (winners.Count != playersInTournament.Count / 2)
+
+                int currentPlayer = 0;
+
+                while (PlayersInTournament.Count != PlayersInRound / 2)
                 {
-                    Match match = new Match(playersInTournament[i], playersInTournament[i + 1], RefereesInTournament[rnd.Next(1, RefereesInTournament.Count)]);
+                    Console.WriteLine("Match " + matchCounter);
+                    Match match = new Match(PlayersInTournament[currentPlayer], PlayersInTournament[currentPlayer + 1], RefereesInTournament[rnd.Next(1, RefereesInTournament.Count)]);
                     Console.WriteLine(match.ToString());
 
                     TennisPlayer winner = match.SimulateMatch();
+
                     System.Threading.Thread.Sleep(1000);
-                    if (winner == playersInTournament[i])
+                    if (winner != PlayersInTournament[currentPlayer])
                     {
-                        winners.Add(playersInTournament[i]);
+                        RemoveFromTournament(PlayersInTournament[currentPlayer]);
                     }
                     else
                     {
-                        winners.Add(playersInTournament[i + 1]);
+                        RemoveFromTournament(PlayersInTournament[currentPlayer + 1]);
                     }
-                    i = i + 2;
-                    Matchcount++;
+                    currentPlayer++;
+                    matchCounter++;
                 }
+                Console.WriteLine("---------------- END OF ROUND " + roundCounter + " ----------------- \n");
                 roundCounter++;
-                SimulateTournament(winners); // recursive call
+
+                SimulateTournament(); // recursive call
             }
         }
 
-        public void AddPlayerToTournament(TennisPlayer player)
+        // overloaded methods to add and remove players/referees
+        public void AddToTournament(TennisPlayer player)
         {
             PlayersInTournament.Add(player);
         }
 
-        public void RemovePlayerFromTournament(TennisPlayer player)
-        {
-            PlayersInTournament.Remove(player);
-        }
-
-        public void AddRefereeToTournament(Referee referee)
+        public void AddToTournament(Referee referee)
         {
             RefereesInTournament.Add(referee);
         }
 
-        public void RemoveRefereeFromTournament(Referee referee)
+        public void RemoveFromTournament(TennisPlayer player)
+        {
+            PlayersInTournament.Remove(player);
+        }
+
+        public void RemoveFromTournament(Referee referee)
         {
             RefereesInTournament.Remove(referee);
         }

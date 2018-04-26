@@ -38,13 +38,13 @@ namespace tennis_tournament
                 // Load players
                 if (genderPlayer == 'm')
                 {
-                    var Male = new ReadCSVFile(@"..\Txt files\MalePlayer.txt");
+                    var Male = new ReadCSVFile(@"C:\Users\Frederik\Documents\GitHub\GOOP_Projekt2\kursusgang6_opgaver\Resources\MalePlayer.txt");
                     Male.LoadPlayers(sex.male,playerCount);
                     playersInTournament = Male.Players;
                 }
                 else if (genderPlayer == 'f')
                 {
-                    var Female = new ReadCSVFile(@"..\Txt files\FemalePlayer.txt");
+                    var Female = new ReadCSVFile(@"C:\Users\Frederik\Documents\GitHub\GOOP_Projekt2\kursusgang6_opgaver\Resources\FemalePlayer.txt");
                     Female.LoadPlayers(sex.female,playerCount);
                     playersInTournament = Female.Players;
                 }
@@ -57,14 +57,14 @@ namespace tennis_tournament
 
                 // Load referees 
                 if (genderRef == 'm')
-                {
-                    var Male = new ReadCSVFile(@"..\Txt files\MaleRefs.txt");
+                {                 
+                    var Male = new ReadCSVFile(@"C:\Users\Frederik\Documents\GitHub\GOOP_Projekt2\kursusgang6_opgaver\Resources\MaleRefs.txt");
                     Male.LoadReferees(sex.male);
                     refereesInTournament = Male.Referees;
                 }
                 else if (genderRef == 'f')
                 {
-                    var Female = new ReadCSVFile(@"..\Txt files\FemaleRefs.txt");
+                    var Female = new ReadCSVFile(@"C:\Users\Frederik\Documents\GitHub\GOOP_Projekt2\kursusgang6_opgaver\Resources\FermaleRefs.txt");
                     Female.LoadReferees(sex.male);
                     refereesInTournament = Female.Referees;
                 }
@@ -77,9 +77,9 @@ namespace tennis_tournament
 
                 Console.Clear();
                 Console.WriteLine(tournament.ToString());
-                tournament.SimulateTournament(playersInTournament); // simulates tournament
 
-                Console.WriteLine(tournament.Matchcount + " total matches played in tournament");
+                // simulates tournament
+                tournament.SimulateTournament(); 
             }
             catch (GendersOfPlayersInMatchException e)
             {
