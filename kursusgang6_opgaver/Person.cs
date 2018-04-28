@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+The person class is intended as a superclass, from which the TennisPlayer and Referee class inherit directly. The class is set to abstract, because the program will not be using Person objects.
+
+The class has a method that calculates the age, and the method is called inside the constructor. The method requires the DateOfBirth property, therefore the DateOfBirth property is set before the Age property
+in the constructor.
+*/
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +21,7 @@ namespace tennis_tournament
         public string LastName { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string Nationality { get; set; }
-        public int Age { get; set; }
+        public int Age { get; }
         public sex Gender { get; set; }
        
         public Person(string firstName, string middleName, string lastName, string birthDate,

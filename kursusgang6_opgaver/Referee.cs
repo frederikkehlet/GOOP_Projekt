@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+/*
+ * Inherites from Person class. This class adds LicenseAquired and LicenseRenewed properties
+ */ 
 namespace tennis_tournament
 {
     public class Referee : Person

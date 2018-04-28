@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+ The match class has Player1, Player2, Referee and Sets as its properties. When setting the Sets property, it checks if the two players are of the same gender, and if not it will throw an exception.
+ 
+ There are methods for simulating a set, simulating a match, determining the winner, printing the match result and displaying how many sets were played in the match. The SimulateMatch() method uses
+ SimulateSet() and it will simulate sets untill one player has 3 wins for males, or 2 wins for females. The results are added to a two-dimensional array, which gets printed after the match is over.
+*/
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,8 +15,8 @@ namespace tennis_tournament
     class Match
     {
         Random rnd = new Random(DateTime.Now.Millisecond);
-        private int sets;
-        private int player1Wins = 0, player2Wins = 0;
+        int sets;
+        int player1Wins = 0, player2Wins = 0;
 
         public TennisPlayer Player1 { get; }
         public TennisPlayer Player2 { get; }
@@ -121,6 +127,8 @@ namespace tennis_tournament
         // method for simulating the result of one set
         private int[] SimulateSet()
         {
+            System.Threading.Thread.Sleep(200);
+
             int[] point = new int[2];
 
             while ((point[0] < 6) && (point[1] < 6))

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace tennis_tournament
 {
-    public class PlayerCountUnevenException : Exception
+    public class PlayerCountException : Exception
     {
-        public PlayerCountUnevenException(string message): base(message) { }
+        public PlayerCountException(string message): base(message) { }
     }
 }

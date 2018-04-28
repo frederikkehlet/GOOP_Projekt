@@ -46,7 +46,7 @@
     <Compile Include="Gamemaster.cs" />
     <Compile Include="Custom exceptions\GendersOfPlayersInMatchException.cs" />
     <Compile Include="Match.cs" />
-    <Compile Include="Custom exceptions\PlayerCountUnevenException.cs" />
+    <Compile Include="Custom exceptions\PlayerCountException.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

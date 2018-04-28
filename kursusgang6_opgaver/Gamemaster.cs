@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+/*
+ * Inherits from the Referee class, and thus also indirectly from Person class
+ */ 
 namespace tennis_tournament
 {
     class Gamemaster : Referee
